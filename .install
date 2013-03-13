@@ -3,35 +3,8 @@
 # you don't need (and this header).
 
 ## arg 1:  the new package version
-#pre_install() {
-  # do something here
-#}
-
-## arg 1:  the new package version
 post_install() {
-	echo Edit /home/git/gitlab-shell/config.yml and run ./bin/install
+	echo Edit /etc/gitlab-shell/config.yml and run /usr/share/gitlab-shell/bin/install
 }
-
-## arg 1:  the new package version
-## arg 2:  the old package version
-#pre_upgrade() {
-  # do something here
-#}
-
-## arg 1:  the new package version
-## arg 2:  the old package version
-#post_upgrade() {
-  # do something here
-#}
-
-## arg 1:  the old package version
-#pre_remove() {
-  # do something here
-#}
-
-## arg 1:  the old package version
-#post_remove() {
-  # do something here
-#}
 
 # vim:set ts=2 sw=2 et:

@@ -13,7 +13,7 @@ makedepends=('git')
 optdepends=(
 )
 provides=('gitlab-shell')
-backup=('home/git/gitlab-shell/config.yml')
+backup=('etc/gitlab-shell/config.yml')
 install=.install
 _gitname="gitlab-shell"
 
@@ -24,12 +24,21 @@ build() {
 	fi
 }
 
+_homedir="$pkgdir/usr/share/gitlab-shell"
+
 package() {
-    mkdir -p "$pkgdir/home/git"
-    cp -r "$srcdir/gitlab-shell" "$pkgdir/home/git"
-    cp "$srcdir/gitlab-shell/config.yml.example" "$pkgdir/home/git/gitlab-shell/config.yml"
-    rm -rf "$pkgdir/home/git/gitlab-shell/.git"
-    rm "$pkgdir/home/git/gitlab-shell/.gitignore"
-    chown -R git:git "$pkgdir/home/git"
+    mkdir -p "$_homedir"
+    cp -r -T "$srcdir/gitlab-shell" "$_homedir"
+    rm -rf "$_homedir/.git"
+    rm "$_homedir/.gitignore"
+
+    chown -R git:git "$_homedir"
+
+    install -Dm0644 "$srcdir/gitlab-shell/config.yml.example" "$pkgdir/etc/gitlab-shell/config.yml"
+#    mkdir -p "$pkgdir/etc/gitlab-shell"
+#    cp "$srcdir/gitlab-shell/config.yml.example" "$pkgdir/etc/gitlab-shell/config.yml"
+    ln -s "/etc/gitlab-shell/config.yml" "$_homedir/config.yml"
+
+#    chown -R git:git "$pkgdir/etc/gitlab-shell"
 }
 
