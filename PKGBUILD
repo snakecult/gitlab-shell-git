@@ -24,11 +24,11 @@ build() {
 	fi
 }
 
-_homedir="$pkgdir/usr/share/gitlab-shell"
+_homedir="$pkgdir/home/git/gitlab-shell"
 
 package() {
     mkdir -p "$_homedir"
-    cp -r -T "$srcdir/gitlab-shell" "$_homedir"
+    cp -rT "$srcdir/gitlab-shell" "$_homedir"
     rm -rf "$_homedir/.git"
     rm "$_homedir/.gitignore"
 
