@@ -15,7 +15,7 @@ optdepends=(
 install='gitlab-shell.install'
 provides=('gitlab-shell')
 backup=('etc/gitlab-shell/config.yml')
-install=.install
+
 _gitname="gitlab-shell"
 
 build() {
